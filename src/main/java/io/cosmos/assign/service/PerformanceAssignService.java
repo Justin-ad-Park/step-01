@@ -3,6 +3,8 @@ package io.cosmos.assign.service;
 import io.cosmos.assign.assignrule.Filterable;
 import io.cosmos.assign.comparator.AssignSortable;
 import io.cosmos.assign.distribute.Distributable;
+import io.cosmos.assign.distribute.DistributorStrategy;
+import io.cosmos.assign.distribute.DistributorType;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,8 @@ public class PerformanceAssignService extends BaseAssignService {
      */
     public PerformanceAssignService(Filterable assignRule,
                                     AssignSortable sorter,
-                                    @Qualifier("performanceDistributor") Distributable distributable) {
+                                    @DistributorStrategy(DistributorType.PERFORMANCE)
+                                    Distributable distributable) {
         super(assignRule, sorter, distributable);
     }
 

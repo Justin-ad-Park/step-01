@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component("performanceDistributor")
+@Component
+@DistributorStrategy(DistributorType.PERFORMANCE)
 public class PerformanceDistributor implements Distributable {
     @Override
     public List<Assign> distribute(List<Customer> customers, List<Surveyor> surveyors) {

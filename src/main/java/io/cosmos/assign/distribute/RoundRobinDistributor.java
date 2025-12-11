@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component("roundRobinDistributor")
+@Component
+@DistributorStrategy(DistributorType.ROUND_ROBIN)
 public class RoundRobinDistributor implements Distributable {
     @Override
     public List<Assign> distribute(List<Customer> customers, List<Surveyor> surveyors) {
