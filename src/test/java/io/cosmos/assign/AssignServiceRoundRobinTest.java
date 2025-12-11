@@ -30,8 +30,4 @@ class AssignServiceRoundRobinTest {
 
         assertEquals("S2", filteredAssign.get(1).getSurveyor().getId());
     }
-
-
-
-
 }

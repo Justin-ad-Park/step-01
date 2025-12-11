@@ -30,8 +30,5 @@ public class FacadeTest {
         printFilteredAssign(filteredAssign);
 
         assertEquals("S2", filteredAssign.get(1).getSurveyor().getId());
-
-
     }
-
 }

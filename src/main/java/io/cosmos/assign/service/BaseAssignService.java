@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * R02. 템플릿 메서드 역할을 하는 공통 기반 서비스.
  * - 어떤 Distributor 를 쓸지는 하위 클래스가 결정
- * - 로직(필터링, 정렬, 분배)은 여기서 공통 관리
+ * - 로직의 흐름(필터링, 정렬, 분배)은 추상 메서드에서 일괄로 처리
  */
 public abstract class BaseAssignService implements AssignServiceUseCase {
 

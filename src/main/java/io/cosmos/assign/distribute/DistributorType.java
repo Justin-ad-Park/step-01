@@ -14,6 +14,7 @@ public enum DistributorType {
     public int getCode() {
         return code;
     }
+}
 
 //    public static DistributorType fromCode(int code) {
 //        for (DistributorType type : values()) {
@@ -23,4 +24,3 @@ public enum DistributorType {
 //        }
 //        throw new IllegalArgumentException("Unknown DistributorType code: " + code);
 //    }
-}
