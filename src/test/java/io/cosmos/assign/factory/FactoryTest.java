@@ -1,37 +1,41 @@
-package io.cosmos.assign;
+package io.cosmos.assign.factory;
 
-import io.cosmos.assign.service.RoundRobinAssignService;
+import io.cosmos.assign.Assign;
+import io.cosmos.assign.Customer;
+import io.cosmos.assign.Surveyor;
+import io.cosmos.assign.service.AssignServiceUseCase;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static io.cosmos.assign.TestHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-class AssignServiceRoundRobinTest {
+public class FactoryTest {
 
     @Autowired
-    private RoundRobinAssignService assignService;
+    AssignServiceFactory factory;
 
     @Test
-    void assign_with_roundRobin() {
+    void performance_assign_테스트() {
+        AssignServiceUseCase service =
+                factory.getService(AssignServiceType.ROUND_ROBIN);
+
         List<Customer> customers = getCustomers();
         List<Surveyor> surveyors = getSurveyors();
 
         printCustomers(customers);
 
-        List<Assign> filteredAssign = assignService.assign(customers, surveyors);
+        List<Assign> filteredAssign = service.assign(customers, surveyors);
 
         printFilteredAssign(filteredAssign);
 
         assertEquals("S2", filteredAssign.get(1).getSurveyor().getId());
+
+
     }
-
-
-
 
 }
