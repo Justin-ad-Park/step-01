@@ -3,6 +3,7 @@ package io.cosmos.assign.factory;
 import io.cosmos.assign.service.AssignServiceUseCase;
 import io.cosmos.assign.service.PerformanceAssignService;
 import io.cosmos.assign.service.RoundRobinAssignService;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.util.EnumMap;
@@ -15,25 +16,13 @@ import java.util.Objects;
 @Component
 public class AssignServiceFactory {
 
-    private final Map<AssignServiceType, AssignServiceUseCase> services;
+    private final ApplicationContext context;
 
-    public AssignServiceFactory(RoundRobinAssignService roundRobinAssignService,
-                                PerformanceAssignService performanceAssignService) {
-
-        Map<AssignServiceType, AssignServiceUseCase> map =
-                new EnumMap<>(AssignServiceType.class);
-
-        map.put(AssignServiceType.ROUND_ROBIN, roundRobinAssignService);
-        map.put(AssignServiceType.PERFORMANCE, performanceAssignService);
-
-        this.services = Map.copyOf(map); // 불변 Map
+    public AssignServiceFactory(ApplicationContext context) {
+        this.context = context;
     }
 
     public AssignServiceUseCase getService(AssignServiceType type) {
-        AssignServiceUseCase service = services.get(type);
-        if (service == null) {
-            throw new IllegalArgumentException("지원하지 않는 AssignServiceType: " + type);
-        }
-        return service;
+        return context.getBean(type.getBeanName(), AssignServiceUseCase.class);
     }
 }
