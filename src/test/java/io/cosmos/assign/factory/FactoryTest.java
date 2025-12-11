@@ -21,13 +21,13 @@ public class FactoryTest {
 
     @Test
     void performance_assign_테스트() {
-        AssignServiceUseCase service =
-                factory.getService(AssignServiceType.ROUND_ROBIN);
-
         List<Customer> customers = getCustomers();
         List<Surveyor> surveyors = getSurveyors();
 
         printCustomers(customers);
+
+        AssignServiceUseCase service =
+                factory.getService(AssignServiceType.ROUND_ROBIN);
 
         List<Assign> filteredAssign = service.assign(customers, surveyors);
 
